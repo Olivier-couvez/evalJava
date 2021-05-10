@@ -3,10 +3,13 @@ var tabElevNot = document.querySelector("#tabElevesNotes");
 var tabElevMoy = document.querySelector("#tabElevesMoyennes");
 var tabComp = document.querySelector("#tab1");
 var tabComp2 = document.querySelector("#tab2");
+var lesNotes = document.querySelector(".lesNotes");
 
 var itemTabLig, itemTabCel;
 var Moyennes = 0;
 var i = 0, j = 0;
+var plusPetite = 0;
+var plusGrande = 0;
 
 var NomEleves = ["Dupont", "Durand", "Petit", "Martin", "Legrand", "Lacroix", "Legros", "Lenaim"];
 
@@ -33,6 +36,18 @@ for (i = 0; i < NomEleves.length; i++)
         itemTabCel.appendChild(document.createTextNode(Notes[j][i]));
         itemTabLig.appendChild(itemTabCel);
         Moyennes = Moyennes + Notes[j][i];
+        if (plusPetite == 0)
+        {
+            plusPetite = Notes[j][i];
+            }
+        if (plusPetite > Notes[j][i])
+            {
+            plusPetite = Notes[j][i];
+        }
+        if (plusGrande < Notes[j][i])
+        {
+            plusGrande = Notes[j][i];
+            }
 
         console.log(itemTabCel, " ", i, j);
     }
@@ -67,3 +82,6 @@ for (i = 0; i < NomEleves.length; i++)
     tabElevMoy.appendChild(itemTabLig);
 }
 tabComp2.appendChild(tabElevMoy);
+
+console.log(plusPetite, " ", plusGrande);
+lesNotes.innerHTML = "la plus petite note est : " + plusPetite + " et la note la plus grande est : " + plusGrande;
